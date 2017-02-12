@@ -30,7 +30,7 @@ transition: width 0.4s ease-in-out;
 }
 footer{
 width:100%;
-position:absolute;
+
 bottom:0;
 }
 input[type=text]:focus{
@@ -56,12 +56,15 @@ width:50%;
 
 <!-- Header -->
 <header class="w3-panel w3-padding-228 w3-center w3-opacity">
-<h1 class="w3-xlarge">Order ThaiFood</h1>
+<h1 class="w3-xlarge">Thai Kitchen</h1>
 <h1>Order your favorite dishes for delivery!</h1>
 </header>
 <div class="w3-btn-bar  w3-center">
-<p> Thank you for taking the chance to take a look at our website !</p>
-<p> You can start ordering your favorite Thai Dishes by Clicking <a href="order.php">Here</a> </p>
+<img id="food" src="/Spaghetti.jpg"/>
+
+<p style="border:3px; border-style:solid;  border-color:green; "> 
+Thank you for taking the chance to take a look at our website !<br>
+ You can start ordering your favorite Thai Dishes by Clicking <a href="order.php">Here</a> </p>
 
 </div>
 
