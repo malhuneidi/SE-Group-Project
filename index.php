@@ -48,6 +48,7 @@ width:50%;
 <a href="order.php" class="w3-btn w3-border w3-xlarge w3-opacity ">Order Now</a>
 <a href="contactus.php" class="w3-btn w3-border w3-xlarge w3-opacity ">Contact Us</a>
 
+<a href="admin.php" class="w3-btn w3-border w3-xlarge w3-opacity ">Admin Sign in</a>
 </div>
 </div>
 
