@@ -21,7 +21,7 @@ width:330px;
 border: 2px solid #ccc;
 	border-radius:4px;
 	font-size:16px;
-	background-color: grey;
+	background-color: white;
 	background-image: url('searchicon.png');
 	background-position:10px 10px;
 	background-repeat: no-repeat;
@@ -29,10 +29,24 @@ padding : 12px 20px 12px 12px;
 	  -webkit-transition: width 0.4s ease-in-out;
 transition: width 0.4s ease-in-out;
 }
-footer{
-width:100%;
+input[type=password ]{
+width:330px;
+      box-sizing: border-box;
+border: 2px solid #ccc;
+        border-radius:4px;
+        font-size:16px;
+        background-color: white;
+        background-image: url('searchicon.png');
+        background-position:10px 10px;
+        background-repeat: no-repeat;
+padding : 12px 20px 12px 12px;
+          -webkit-transition: width 0.4s ease-in-out;
+transition: width 0.4s ease-in-out;
+}
 
-bottom:0;
+footer{
+width: 100%;
+
 }
 </style>
 
@@ -46,6 +60,7 @@ bottom:0;
 <a href="order.php" class="w3-btn w3-border w3-xlarge w3-opacity ">Order Now</a>
 <a href="contactus.php" class="w3-btn w3-border w3-xlarge w3-opacity ">Contact Us</a>
 <a href="admin.php" class="w3-btn w3-border w3-xlarge w3-opacity ">Admin Sign in</a>
+<a href="tilt1.php" class="w3-btn w3-border w3-xlarge w3-opacity ">Merchandise</a>
 
 </div>
 </div>
@@ -64,7 +79,7 @@ bottom:0;
 <form id="login" name="login" method="post" action="auth.php">
 <label class="w3-padding-44 w3-xlarge"> Username: </label><br><input type="text" name="username"/>
 <br>
-<label class="w3-padding-44  w3-xlarge"> Password:   </label><br><input type="text" name="password"/>
+<label class="w3-padding-44  w3-xlarge"> Password:   </label><br><input type="password" name="password"/>
 <br>
 <input type="submit" value="Login" name="signin" class="w3-xlarge w3-panel"/>
 
@@ -72,10 +87,20 @@ bottom:0;
 
 </form>
 </div>
-
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <!-- Footer -->
-<footer class=" w3-padding-64 w3-light-green w3-center"> 
+<footer class="footer w3-padding-64 w3-light-green w3-center"> 
 <a href="#" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a>
 <a href="#" class="w3-hover-text-light-blue"><i class="fa fa-twitter"></i></a>
 <p>Powered by Amazon's Web Service Server</p>

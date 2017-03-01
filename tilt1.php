@@ -1,9 +1,10 @@
-<!DoCTYPE html>
-<html>
 <?php
 session_start();
-include_once("config.php");
+include_once("config1.php");
 ?>
+<!DoCTYPE html>
+<html>
+
 
 
 
@@ -86,7 +87,6 @@ bottom:0;
 <a href="admin.php" class="w3-btn w3-border w3-xlarge w3-opacity ">Admin Sign in</a>
 <a href="tilt1.php" class="w3-btn w3-border w3-xlarge w3-opacity ">Merchandise</a>
 
-
 </div>
 </div>
 
@@ -98,85 +98,39 @@ bottom:0;
 <h1 class="w3-xlarge">Shopping Cart</h1>
 <h3>Select items to add to cart!</h3>
 </header>
-<div class="orders">
-<?php
-$current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 
-$results = $mysqli->query("SELECT itemName, itemType, itemDesc, price FROM menu ORDER BY id ASC");
-if($results){ 
-$orders_item = '<ul class="orders">';
-//fetch results set as object and output HTML
-while($obj = $results->fetch_object())
-{
-$orders_item .= <<<EOT
-    <li class="product">
-    <form method="post" action="order_update.php">
-    <div class="itemName"><h3>{$obj->itemName}</h3>
-    <div class="itemDesc">{$obj->itemDesc}</div>
-    <div class="orderInfo">
-    Price {$currency}{$obj->price} 
-    
-    <fieldset>
-    
-    <label>
-        <span>Choose Spice:</span>
-        <select name="order_spice">
-        <option value="Black">mild</option>
-        <option value="Silver">spicy</option>
-        </select>
-    </label>
-    
-    <label>
-        <span>Quantity</span>
-        <input type="text" size="2" maxlength="2" name="order_qty" value="1" />
-    </label>
-    
-    </fieldset>
-    <input type="hidden" name="item name" value="{$obj->product_code}" />
-    <input type="hidden" name="type" value="add" />
-    <input type="hidden" name="desc" value="{$current_url}" />
-    <div align="center"><button type="submit" class="add_to_cart">Add</button></div>
-    </div></div>
-    </form>
-    </li>
-EOT;
-}
-$orders_item .= '</ul>';
-echo $orders_item;
-}
-?>
-</div>
 
 <div class="shopping-cart">
 <h2>Your Shopping Cart</h2>
 <?php
-if(isset($_SESSION["thai_cart"]) && count($_SESSION["thai_cart"])>0)
+if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 {
     echo '<div class="cart-view-table-front" id="view-cart">';
     echo '<h3>Your Shopping Cart</h3>';
-    echo '<form method="post" action="order_update.php">';
+    echo '<form method="post" action="cart_update.php">';
     echo '<table width="100%"  cellpadding="6" cellspacing="0">';
     echo '<tbody>';
 
     $total =0;
     $b = 0;
-    foreach ($_SESSION["thai_cart"] as $cart_itm)
+    foreach ($_SESSION["cart_products"] as $cart_itm)
     {
-        $product_name = $cart_itm["itemName"];
-        $product_qty = $cart_itm["itemDesc"];
-        $product_price = $cart_itm["order_spice"];
-        $product_code = $cart_itm["order_qty"];
-        $product_color = $cart_itm["price"];
-        echo '<tr>';
-        echo '<td>Qty <input type="text" size="2" maxlength="2" name="order_qty['.$itemName.']" value="'.$order_qty.'" /></td>';
+        $product_name = $cart_itm["product_name"];
+        $product_qty = $cart_itm["product_qty"];
+        $product_price = $cart_itm["product_price"];
+        $product_code = $cart_itm["product_code"];
+        $product_color = $cart_itm["product_color"];
+        $bg_color = ($b++%2==1) ? 'odd' : 'even'; //zebra stripe
+        echo '<tr class="'.$bg_color.'">';
+        echo '<td>Qty <input type="text" size="2" maxlength="2" name="product_qty['.$product_code.']" value="'.$product_qty.'" /></td>';
         echo '<td>'.$product_name.'</td>';
-        echo '<td><input type="checkbox" name="remove_code[]" value="'.$itemName.'" /> Remove</td>';
+        echo '<td><input type="checkbox" name="remove_code[]" value="'.$product_code.'" /> Remove</td>';
         echo '</tr>';
-        $subtotal = ($price * $order_qty);
+        $subtotal = ($product_price * $product_qty);
         $total = ($total + $subtotal);
     }
     echo '<td colspan="4">';
-    echo '<button type="submit">Update</button><a href="view_cart.php" class="button">Checkout</a>';
+    echo '<button type="submit">Update</button><a href="View_cart.php" class="button">Checkout</a>';
     echo '</td>';
     echo '</tbody>';
     echo '</table>';
@@ -189,6 +143,59 @@ if(isset($_SESSION["thai_cart"]) && count($_SESSION["thai_cart"])>0)
 }
 ?>
 </div>
+
+
+<div class="products">
+<?php
+$current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+
+$results = $mysqli->query("SELECT product_code, product_name, product_desc, product_img_name, price FROM products ORDER BY id ASC");
+if($results){ 
+$products_item = '<ul class="products">';
+//fetch results set as object and output HTML
+while($obj = $results->fetch_object())
+{
+$products_item .= <<<EOT
+    <li class="product">
+    <form method="post" action="cart_update.php">
+    <div class="product-content"><h3>{$obj->product_name}</h3>
+    <div class="product-thumb"><img src="images/{$obj->product_img_name}"></div>
+    <div class="product-desc">{$obj->product_desc}</div>
+    <div class="product-info">
+    Price {$currency}{$obj->price} 
+    
+    <fieldset>
+    
+    <label>
+        <span>Color</span>
+        <select name="product_color">
+        <option value="Black">Black</option>
+        <option value="Silver">Silver</option>
+        </select>
+    </label>
+    
+    <label>
+        <span>Quantity</span>
+        <input type="text" size="2" maxlength="2" name="product_qty" value="1" />
+    </label>
+    
+    </fieldset>
+    <input type="hidden" name="product_code" value="{$obj->product_code}" />
+    <input type="hidden" name="type" value="add" />
+    <input type="hidden" name="return_url" value="{$current_url}" />
+    <div align="center"><button type="submit" class="add_to_cart">Add</button></div>
+    </div></div>
+    </form>
+    </li>
+EOT;
+}
+$products_item .= '</ul>';
+echo $products_item;
+}
+?>
+</div>
+
+
 </br></br></br></br></br></br>
 <footer class=" w3-padding-64 w3-light-green w3-center">
 <a href="#" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a>
@@ -197,5 +204,4 @@ if(isset($_SESSION["thai_cart"]) && count($_SESSION["thai_cart"])>0)
 </footer>
 </body>
 </html>
-
 
