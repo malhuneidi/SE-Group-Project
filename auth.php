@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Contact Us!</title>
+<title>Admin Sign In</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
@@ -30,7 +30,11 @@ transition: width 0.4s ease-in-out;
 }
 footer{
 width:100%;
+position:absolute;
 bottom:0;
+}
+input[type=text]:focus{
+width:50%;
 }
 </style>
 
@@ -44,7 +48,6 @@ bottom:0;
 <a href="order.php" class="w3-btn w3-border w3-xlarge w3-opacity ">Order Now</a>
 <a href="contactus.php" class="w3-btn w3-border w3-xlarge w3-opacity ">Contact Us</a>
 <a href="admin.php" class="w3-btn w3-border w3-xlarge w3-opacity ">Admin Sign in</a>
-<a href="tilt1.php" class="w3-btn w3-border w3-xlarge w3-opacity ">Merchandise</a>
 
 </div>
 </div>
@@ -54,23 +57,44 @@ bottom:0;
 
 <!-- Header -->
 <header class="w3-panel w3-padding-228 w3-center w3-opacity">
-<h1 class="w3-xxlarge">Contact Us</h1> 
-<h1 class="w3-large"><strong> 402-555-5555 <strong> </h1>
-<h3>Suggestions, inquiries, complaints, please fill the information bellow and we'll get back to you!</h3>
+<h1 class="w3-xlarge">Admin Auth</h1>
+<h1>Authenticating...</h1>
 </header>
-<form method="post" action="./results.php" class="w2-center">
-<h3>Your Full Name: </h3><input type="text" name="title" />
-<br>
-<h3>Comment: </h3> <textarea placeholder="Type review here..." name="review" id="review1" style="width: 350px; height:75px;" > </textarea>
-<br>
-<h3>Your Email: </h3> <input type="text" name="link" />
-<br>
-<h3>Your Phone Number: </h3> <input type="text" name="link" />
-<br>
-<br>
-<input type="submit" value= "Submit" name="passedData" class="w3-btn w3-border w3-xlarge w3-opacity w3-panel"/>
-</form>
-<br><br><br>
+<?php
+$link = mysqli_connect("localhost", "root", "root", "ThaiDb");
+
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+
+
+$password = mysqli_real_escape_string($link,$_POST['password']);
+$username = mysqli_real_escape_string($link,$_POST['username']);
+
+$sql ="SELECT users, passwords FROM myAccounts WHERE users LIKE'$username' AND passwords LIKE '$password'";
+$raw_results = $link->query($sql);
+$row_count =$raw_results -> num_rows;
+$count =0;
+while($row =$raw_results->fetch_assoc()){
+$count++;
+
+}
+$row=0;
+$raw_results =$link->query($sql);
+$row_count =$raw_results -> num_rows;
+if($count >= 1){
+        echo " <h1>Authentication Succesfull</h1>";
+        echo " <h2>Redirecting... </h2>";
+
+}
+else {
+echo "<h1> account not found </h1>";
+
+}
+session_start();
+header("Location: adminpanel.php");
+exit();
+?>
 
 
 
@@ -82,5 +106,3 @@ bottom:0;
 </footer>
 </body>
 </html>
-
-

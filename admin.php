@@ -1,6 +1,7 @@
+
 <!DOCTYPE html>
 <html>
-<title>Contact Us!</title>
+<title>Order ThaiFood now</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
@@ -12,9 +13,23 @@ body,h1 {font-family: "Raleway", Arial, sans-serif}
 h1 {letter-spacing: 6px}
 .w3-row-padding img {margin-bottom: 12px}
 body{
-        overflow-x:hidden;
+	overflow-x:hidden;
 }
 input[type=text ]{
+width:330px;
+      box-sizing: border-box;
+border: 2px solid #ccc;
+	border-radius:4px;
+	font-size:16px;
+	background-color: white;
+	background-image: url('searchicon.png');
+	background-position:10px 10px;
+	background-repeat: no-repeat;
+padding : 12px 20px 12px 12px;
+	  -webkit-transition: width 0.4s ease-in-out;
+transition: width 0.4s ease-in-out;
+}
+input[type=password ]{
 width:330px;
       box-sizing: border-box;
 border: 2px solid #ccc;
@@ -28,9 +43,10 @@ padding : 12px 20px 12px 12px;
           -webkit-transition: width 0.4s ease-in-out;
 transition: width 0.4s ease-in-out;
 }
+
 footer{
-width:100%;
-bottom:0;
+width: 100%;
+
 }
 </style>
 
@@ -54,28 +70,37 @@ bottom:0;
 
 <!-- Header -->
 <header class="w3-panel w3-padding-228 w3-center w3-opacity">
-<h1 class="w3-xxlarge">Contact Us</h1> 
-<h1 class="w3-large"><strong> 402-555-5555 <strong> </h1>
-<h3>Suggestions, inquiries, complaints, please fill the information bellow and we'll get back to you!</h3>
+<h1 class="w3-xlarge">Admin Sign in</h1>
+<h3>Please Sign in here to add or remove items from Menu!</h3>
 </header>
-<form method="post" action="./results.php" class="w2-center">
-<h3>Your Full Name: </h3><input type="text" name="title" />
+<div class="w3-btn-bar  w3-center">
+
+<p style="border:3px; border-style:solid;  border-color:green; "> 
+<form id="login" name="login" method="post" action="auth.php">
+<label class="w3-padding-44 w3-xlarge"> Username: </label><br><input type="text" name="username"/>
 <br>
-<h3>Comment: </h3> <textarea placeholder="Type review here..." name="review" id="review1" style="width: 350px; height:75px;" > </textarea>
+<label class="w3-padding-44  w3-xlarge"> Password:   </label><br><input type="password" name="password"/>
 <br>
-<h3>Your Email: </h3> <input type="text" name="link" />
-<br>
-<h3>Your Phone Number: </h3> <input type="text" name="link" />
-<br>
-<br>
-<input type="submit" value= "Submit" name="passedData" class="w3-btn w3-border w3-xlarge w3-opacity w3-panel"/>
+<input type="submit" value="Login" name="signin" class="w3-xlarge w3-panel"/>
+
+
+
 </form>
-<br><br><br>
-
-
-
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <!-- Footer -->
-<footer class=" w3-padding-64 w3-light-green w3-center">
+<footer class="footer w3-padding-64 w3-light-green w3-center"> 
 <a href="#" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a>
 <a href="#" class="w3-hover-text-light-blue"><i class="fa fa-twitter"></i></a>
 <p>Powered by Amazon's Web Service Server</p>
