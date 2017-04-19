@@ -176,7 +176,7 @@ if(isset($_POST["get_cart_product"]) || isset($_POST["cart_checkout"])){
 				<div class='row'>
 					<div class='col-md-3 col-xs-3'>$no</div>
 					<div class='col-md-3 col-xs-3'>$pro_name</div>
-					<div class='col-md-3 col-xs-3'>$.$pro_price.00</div>
+					<div class='col-md-3 col-xs-3'>$$pro_price.00</div>
 				</div>
 			";
 			$no = $no + 1;
